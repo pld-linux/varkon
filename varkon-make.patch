@@ -1,0 +1,433 @@
+diff -Nur varkon_1.17C.orig/sources/AN/src/Makefile.AN varkon_1.17C/sources/AN/src/Makefile.AN
+--- varkon_1.17C.orig/sources/AN/src/Makefile.AN	Mon Aug 21 21:33:42 2000
++++ varkon_1.17C/sources/AN/src/Makefile.AN	Tue May 22 21:33:04 2001
+@@ -51,7 +51,7 @@
+ # Targets
+ 
+ $(MBSC): $(OBJS)
+-	cc $(LDFLAGS) ../lib/mbsclib.a -lm -o $(MBSC)
++	$(CC) $(LDFLAGS) ../lib/mbsclib.a -lm -o $(MBSC)
+ 
+ clean:
+ 	$(RM) *.o ../lib/mbsclib.a $(MBSC)
+diff -Nur varkon_1.17C.orig/sources/AN/src/Makefile.linux varkon_1.17C/sources/AN/src/Makefile.linux
+--- varkon_1.17C.orig/sources/AN/src/Makefile.linux	Mon Aug 21 21:33:42 2000
++++ varkon_1.17C/sources/AN/src/Makefile.linux	Tue May 22 21:30:31 2001
+@@ -17,21 +17,16 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ CFLAGS = -ansi \
+          -Wall \
+          -ffloat-store \
+          -fsigned-char \
+          -fwritable-strings \
+-         -m486 \
+-         -O \
+          -D_POSIX_SOURCE \
+          -DUNIX \
+          -DANALYZER \
+-         -DWRK_STAT
+-
+-LDFLAGS =
++         -DWRK_STAT \
++	 $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/DB/src/Makefile.linux varkon_1.17C/sources/DB/src/Makefile.linux
+--- varkon_1.17C.orig/sources/DB/src/Makefile.linux	Mon Aug 21 21:33:43 2000
++++ varkon_1.17C/sources/DB/src/Makefile.linux	Tue May 22 21:32:28 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS = \
+             -ansi \
+             -pedantic \
+@@ -17,9 +15,8 @@
+             -ffloat-store \
+             -fsigned-char \
+             -fwritable-strings \
+-            -m486 \
+-            -O \
+-            -DUNIX
++            -DUNIX \
++	    $(OPTFLAGS)
+ 
+ debug :      CFLAGS = \
+             -ansi \
+@@ -27,10 +24,9 @@
+             -ffloat-store \
+             -fsigned-char \
+             -fwritable-strings \
+-            -m486 \
+-            -g \
+             -DDEBUG \
+-            -DUNIX
++            -DUNIX \
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/EX/src/Makefile.linux varkon_1.17C/sources/EX/src/Makefile.linux
+--- varkon_1.17C.orig/sources/EX/src/Makefile.linux	Mon Aug 21 21:33:43 2000
++++ varkon_1.17C/sources/EX/src/Makefile.linux	Tue May 22 21:33:37 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,11 +15,10 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+             -DUNIX                      \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ debug :     CFLAGS =                    \
+             -ansi                       \
+@@ -29,11 +26,10 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+             -DUNIX                      \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/GE/src/Makefile.linux varkon_1.17C/sources/GE/src/Makefile.linux
+--- varkon_1.17C.orig/sources/GE/src/Makefile.linux	Mon Aug 21 21:33:45 2000
++++ varkon_1.17C/sources/GE/src/Makefile.linux	Tue May 22 21:34:23 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,9 +15,8 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+-            -DUNIX
++            -DUNIX			\
++	    $(OPTFLAGS)
+ 
+ debug :     CFLAGS =                    \
+             -ansi                       \
+@@ -27,9 +24,8 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+-            -DUNIX
++            -DUNIX			\
++	    $(OPTFLAGS)
+ 
+ gpl   :     CFLAGS =                    \
+             -ansi                       \
+@@ -38,9 +34,8 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+-            -DUNIX
++            -DUNIX			\
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/GP/src/Makefile.linux varkon_1.17C/sources/GP/src/Makefile.linux
+--- varkon_1.17C.orig/sources/GP/src/Makefile.linux	Mon Aug 21 21:34:37 2000
++++ varkon_1.17C/sources/GP/src/Makefile.linux	Tue May 22 21:35:01 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,12 +15,11 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+             -DUNIX                      \
+             -DV3_OPENGL                 \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ debug :     CFLAGS =                    \
+             -ansi                       \
+@@ -30,12 +27,11 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+             -DUNIX                      \
+             -DV3_OPENGL                 \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ include Makefile.GP
+ 
+diff -Nur varkon_1.17C.orig/sources/IG/src/Makefile.linux varkon_1.17C/sources/IG/src/Makefile.linux
+--- varkon_1.17C.orig/sources/IG/src/Makefile.linux	Mon Aug 21 21:34:42 2000
++++ varkon_1.17C/sources/IG/src/Makefile.linux	Tue May 22 21:35:31 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,11 +15,10 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+             -DUNIX                      \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ debug :     CFLAGS =                    \
+             -ansi                       \
+@@ -29,12 +26,11 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+             -DDEBUG                     \
+             -DUNIX                      \
+             -DV3_X11                    \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/Makefile.linux varkon_1.17C/sources/Makefile.linux
+--- varkon_1.17C.orig/sources/Makefile.linux	Thu Oct  5 10:52:30 2000
++++ varkon_1.17C/sources/Makefile.linux	Tue May 22 21:28:59 2001
+@@ -26,7 +26,7 @@
+ # OpenGL libraries. You may have to change this line
+ # to reflect the location of your OpenGL libs.
+ 
+-GLIBS = -lGL -lGLU
++GLIBS = -L/usr/X11R6/lib -lGL -lGLU
+ 
+ # The actual executable, xvarkon.
+ 
+@@ -35,7 +35,7 @@
+ # Targets
+ 
+ $(XVARKON): $(LIBS)
+-	cc $(LIBS) $(XLIBS) $(GLIBS) -lm -o $(XVARKON)
++	$(CC) $(LDFLAGS) $(LIBS) $(XLIBS) $(GLIBS) -lm -o $(XVARKON)
+ 
+ 
+ ##########################################################
+diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.PL varkon_1.17C/sources/PL/src/Makefile.PL
+--- varkon_1.17C.orig/sources/PL/src/Makefile.PL	Mon Aug 21 21:34:44 2000
++++ varkon_1.17C/sources/PL/src/Makefile.PL	Tue May 22 21:38:21 2001
+@@ -33,45 +33,38 @@
+ # Each driver is a target
+ 
+ postscript: PLlib postscript.c
+-	$(COMPILE) postscript.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) postscript.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o postscript
+-	strip postscript
+ 	mv postscript $(VARKON_ROOT)/bin
+ 
+ epson : PLlib epson.c
+-	$(COMPILE) epson.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) epson.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o epson
+-	strip epson
+ 	mv epson $(VARKON_ROOT)/bin
+ 
+ ibmpro : PLlib ibmpro.c
+-	$(COMPILE) ibmpro.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) ibmpro.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o ibmpro
+-	strip ibmpro
+ 	mv ibmpro $(VARKON_ROOT)/bin
+ 
+ hp7475 : PLlib hp7475.c
+-	$(COMPILE) hp7475.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) hp7475.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o hp7475
+-	strip hp7475
+ 	mv hp7475 $(VARKON_ROOT)/bin
+ 
+ hpcl5  : PLlib hpcl5.c
+-	$(COMPILE) hpcl5.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) hpcl5.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o hpcl5
+-	strip hpcl5
+ 	mv hpcl5 $(VARKON_ROOT)/bin
+ 
+ hpgl2  : PLlib hpgl2.c
+-	$(COMPILE) hpgl2.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) hpgl2.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o hpgl2
+-	strip hpgl2
+ 	mv hpgl2 $(VARKON_ROOT)/bin
+ 
+ gerber : PLlib gerber.c
+-	$(COMPILE) gerber.c ../../IG/src/ig29.c     \
++	$(COMPILE) $(LDFLAGS) gerber.c ../../IG/src/ig29.c     \
+                    ../lib/PLlib.a -lm -o gerber
+-	strip gerber
+ 	mv gerber $(VARKON_ROOT)/bin
+ 
+ all : postscript epson ibmpro hp7475 hpcl5 hpgl2 gerber
+diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.linux varkon_1.17C/sources/PL/src/Makefile.linux
+--- varkon_1.17C.orig/sources/PL/src/Makefile.linux	Mon Aug 21 21:34:44 2000
++++ varkon_1.17C/sources/PL/src/Makefile.linux	Tue May 22 21:35:59 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ # Options to CC
+ 
+ CFLAGS =                             \
+@@ -19,10 +17,9 @@
+          -ffloat-store               \
+          -fsigned-char               \
+          -fwritable-strings          \
+-         -m486                       \
+-         -O                          \
+          -DUNIX                      \
+-         -DWRK_STAT
++         -DWRK_STAT		     \
++	 $(OPTFLAGS)
+ 
+ COMPILE = $(CC) $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/PM/src/Makefile.linux varkon_1.17C/sources/PM/src/Makefile.linux
+--- varkon_1.17C.orig/sources/PM/src/Makefile.linux	Mon Aug 21 21:34:48 2000
++++ varkon_1.17C/sources/PM/src/Makefile.linux	Tue May 22 21:38:49 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,11 +15,10 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+             -DWRK_STAT                  \
+             -DV3_X11                    \
+-            -DUNIX
++            -DUNIX			\
++	    $(OPTFLAGS)
+ 
+ debug :      CFLAGS =                   \
+             -ansi                       \
+@@ -29,12 +26,11 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+             -DWRK_STAT                  \
+             -DV3_X11                    \
+             -DDEBUG                     \
+-            -DUNIX
++            -DUNIX			\
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 
+diff -Nur varkon_1.17C.orig/sources/WP/src/Makefile.linux varkon_1.17C/sources/WP/src/Makefile.linux
+--- varkon_1.17C.orig/sources/WP/src/Makefile.linux	Mon Aug 21 21:34:55 2000
++++ varkon_1.17C/sources/WP/src/Makefile.linux	Tue May 22 21:39:51 2001
+@@ -8,8 +8,6 @@
+ 
+ RM = rm -f
+ 
+-CC = gcc
+-
+ distr :     CFLAGS =                    \
+             -ansi                       \
+             -pedantic                   \
+@@ -17,12 +15,11 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -O                          \
+             -DUNIX                      \
+             -DV3_X11                    \
+             -DV3_OPENGL                 \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ debug :     CFLAGS =                    \
+             -ansi                       \
+@@ -30,13 +27,12 @@
+             -ffloat-store               \
+             -fsigned-char               \
+             -fwritable-strings          \
+-            -m486                       \
+-            -g                          \
+             -DDEBUG                     \
+             -DUNIX                      \
+             -DV3_X11                    \
+             -DV3_OPENGL                 \
+-            -DWRK_STAT
++            -DWRK_STAT			\
++	    $(OPTFLAGS)
+ 
+ COMPILE = $(CC) -c $(CFLAGS)
+ 

@@ -1,0 +1,170 @@
+#!/bin/sh
+#######################################################
+#
+# Startscript for english version of VARKON.
+#
+# See the comments below for instructions on
+# how to configure your installation.
+#
+# (C)Microform AB 2000
+# modified for PLD by PLD Team
+#
+#######################################################
+
+# Root directory for VARKON installation. Change this
+# line to point to the right location.
+
+VARKON_ROOT="/usr/X11R6/lib/varkon"
+export VARKON_ROOT
+
+VARKON_LANG="${LANG}"
+if [ -n "${LC_ALL}" ]; then
+	VARKON_LANG="${LC_ALL}"
+fi
+if [ -n "${LC_MESSAGES}" ]; then
+	VARKON_LANG="${LC_MESSAGES}"
+fi
+VARKON_LANG=`echo ${VARKON_LANG} | sed -e 's/_.*$//'`
+
+if [ "${VARKON_LANG}" = "sv" ]; then
+	VARKON_LANG="swedish";
+else
+	VARKON_LANG="english";
+fi
+
+# Standard menufiles  (*.MDF, *.INC)
+
+VARKON_MDF=$VARKON_ROOT/mdf/$VARKON_LANG
+if [ ! -d "${VARKON_MDF}" ]; then
+	VARKON_MDF=$VARKON_ROOT/mdf/english
+fi
+export VARKON_MDF
+
+if [ -z "${VARKON_DIR}" ]; then
+	VARKON_DIR=~/.varkon
+fi
+
+if [ ! -d "${VARKON_DIR}" ]; then
+	if [ -e "${VARKON_DIR}" ]; then
+		echo "Error: ${VARKON_DIR} exists and is not directory."
+		exit 1
+	fi
+	mkdir -p "${VARKON_DIR}"
+fi
+
+# Project files  (*.PID)
+# You may change this location to some other place
+# like $HOME/pid if you want PID files from different
+# versions of VARKON to persist in a common place.
+# All users need write access to this directory
+
+VARKON_PID="$VARKON_DIR/pid"
+export VARKON_PID
+
+if [ ! -d "${VARKON_PID}" ]; then
+	mkdir "${VARKON_PID}"
+fi
+
+# Errormessages   (*.ERM)
+
+VARKON_ERM=$VARKON_ROOT/erm
+export VARKON_ERM
+
+# The VARKON documentation (*.htm)
+
+VARKON_DOC=$VARKON_ROOT/man
+export VARKON_DOC
+
+# System module library   (*.MBO)
+
+VARKON_LIB=$VARKON_ROOT/lib
+export VARKON_LIB
+
+# Temporary files
+# This line may be changed to /tmp or wherever you
+# like to keep temporary files. On a network this
+# directory should usually reside on the local machine
+# so you may set it up differently for different users.
+# All users need write access to this directory
+
+VARKON_TMP="${TMPDIR:-/tmp}"
+export VARKON_TMP
+
+# Fonts for graphical text
+
+VARKON_FNT=$VARKON_ROOT/cnf/fnt
+export VARKON_FNT
+
+# Plotter configuration
+# You may change this location to some other place
+# like $HOME/cnf/plt if you want to reuse an old
+# configuration when installing a new version of VARKON.
+# All users need write access to this directory
+
+VARKON_PLT="$VARKON_DIR/plt"
+export VARKON_PLT
+
+if [ ! -d "${VARKON_PLT}" ]; then
+	mkdir "${VARKON_PLT}"
+	cp -f ${VARKON_ROOT}/cnf/plt/* "${VARKON_PLT}"
+fi
+
+# Icon bitmaps for buttons
+
+VARKON_ICO=$VARKON_ROOT/cnf/icons
+export VARKON_ICO
+
+# Tolerances
+
+VARKON_TOL=$VARKON_ROOT/cnf/tol
+export VARKON_TOL
+
+# Standard resources for X-Windows
+
+VARKON_INI=$VARKON_ROOT/cnf/ini/${VARKON_LANG}
+if [ ! -d "${VARKON_INI}" ]; then
+	VARKON_INI=$VARKON_ROOT/cnf/ini/english
+fi
+export VARKON_INI
+
+# Default root for VARKON applications
+# This directory should normally be $HOME/app
+# or somewhere else outside the VARKON_ROOT tree
+# directory so that a new version of VARKON will
+# not interfere with old jobs.
+# All users need write access to this directory
+
+VARKON_PRD=$VARKON_DIR/app
+export VARKON_PRD
+
+if [ ! -d "${VARKON_PRD}" ]; then
+	mkdir "${VARKON_PRD}"
+fi
+
+# PATH for executables (xvarkon, mbsc, plotterdrivers)
+
+PATH=$VARKON_ROOT/bin:$PATH
+export PATH
+
+# Path to shared OpenGL Library
+
+LD_LIBRARY_PATH=$VARKON_ROOT/bin
+export LD_LIBRARY_PATH
+
+# Start the VARKON executable
+# Add an extra ini-file with your own configuration
+# if you want to. Don't edit the standard file included
+# in the distribution or you will have to do it all
+# over again when updating the system.
+
+xvarkon "$1" "$2" -i${VARKON_INI}/linux
+
+# With an inifile of your own it would look something
+# like the following:
+
+# xvarkon $1 $2    \
+# -i$VARKON_INI/linux -i$HOME/cnf/ini/english/my_own_inifile
+
+# If you want to run the system in pure drafting mode, add
+# "-r" to the command line.
+# xvarkon -r $1 $2 -i$VARKON_INI/linux
