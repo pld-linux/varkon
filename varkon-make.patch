@@ -10,10 +10,9 @@ diff -Nur varkon_1.17C.orig/sources/AN/src/Makefile.AN varkon_1.17C/sources/AN/s
  
  clean:
  	$(RM) *.o ../lib/mbsclib.a $(MBSC)
-diff -Nur varkon_1.17C.orig/sources/AN/src/Makefile.linux varkon_1.17C/sources/AN/src/Makefile.linux
---- varkon_1.17C.orig/sources/AN/src/Makefile.linux	Mon Aug 21 21:33:42 2000
-+++ varkon_1.17C/sources/AN/src/Makefile.linux	Tue May 22 21:30:31 2001
-@@ -17,21 +17,16 @@
+--- varkon_1.17D.orig/sources/AN/src/Makefile.linux	Mon Aug 21 21:33:42 2000
++++ varkon_1.17D/sources/AN/src/Makefile.linux	Tue May 22 21:30:31 2001
+@@ -17,21 +17,17 @@
  
  RM = rm -f
  
@@ -24,22 +23,21 @@ diff -Nur varkon_1.17C.orig/sources/AN/src/Makefile.linux varkon_1.17C/sources/A
           -ffloat-store \
           -fsigned-char \
           -fwritable-strings \
--         -m486 \
 -         -O \
           -D_POSIX_SOURCE \
           -DUNIX \
           -DANALYZER \
--         -DWRK_STAT
+          -DWRK_STAT \
+-         -DVARKON
 -
 -LDFLAGS =
-+         -DWRK_STAT \
++         -DVARKON \
 +	 $(OPTFLAGS)
  
  COMPILE = $(CC) -c $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/DB/src/Makefile.linux varkon_1.17C/sources/DB/src/Makefile.linux
---- varkon_1.17C.orig/sources/DB/src/Makefile.linux	Mon Aug 21 21:33:43 2000
-+++ varkon_1.17C/sources/DB/src/Makefile.linux	Tue May 22 21:32:28 2001
+--- varkon_1.17D.orig/sources/DB/src/Makefile.linux	Mon Aug 21 21:33:43 2000
++++ varkon_1.17D/sources/DB/src/Makefile.linux	Tue May 22 21:32:28 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -49,11 +47,10 @@ diff -Nur varkon_1.17C.orig/sources/DB/src/Makefile.linux varkon_1.17C/sources/D
  distr :     CFLAGS = \
              -ansi \
              -pedantic \
-@@ -17,9 +15,8 @@
+@@ -17,8 +15,8 @@
              -ffloat-store \
              -fsigned-char \
              -fwritable-strings \
--            -m486 \
 -            -O \
 -            -DUNIX
 +            -DUNIX \
@@ -74,9 +71,8 @@ diff -Nur varkon_1.17C.orig/sources/DB/src/Makefile.linux varkon_1.17C/sources/D
  
  COMPILE = $(CC) -c $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/EX/src/Makefile.linux varkon_1.17C/sources/EX/src/Makefile.linux
---- varkon_1.17C.orig/sources/EX/src/Makefile.linux	Mon Aug 21 21:33:43 2000
-+++ varkon_1.17C/sources/EX/src/Makefile.linux	Tue May 22 21:33:37 2001
+--- varkon_1.17D.orig/sources/EX/src/Makefile.linux	Mon Aug 21 21:33:43 2000
++++ varkon_1.17D/sources/EX/src/Makefile.linux	Tue May 22 21:33:37 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -86,11 +82,10 @@ diff -Nur varkon_1.17C.orig/sources/EX/src/Makefile.linux varkon_1.17C/sources/E
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,11 +15,10 @@
+@@ -17,10 +15,10 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
              -DUNIX                      \
              -DV3_X11                    \
@@ -114,9 +109,8 @@ diff -Nur varkon_1.17C.orig/sources/EX/src/Makefile.linux varkon_1.17C/sources/E
  
  COMPILE = $(CC) -c $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/GE/src/Makefile.linux varkon_1.17C/sources/GE/src/Makefile.linux
---- varkon_1.17C.orig/sources/GE/src/Makefile.linux	Mon Aug 21 21:33:45 2000
-+++ varkon_1.17C/sources/GE/src/Makefile.linux	Tue May 22 21:34:23 2001
+--- varkon_1.17D.orig/sources/GE/src/Makefile.linux	Mon Aug 21 21:33:45 2000
++++ varkon_1.17D/sources/GE/src/Makefile.linux	Tue May 22 21:34:23 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -126,11 +120,10 @@ diff -Nur varkon_1.17C.orig/sources/GE/src/Makefile.linux varkon_1.17C/sources/G
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,9 +15,8 @@
+@@ -17,8 +15,8 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
 -            -DUNIX
 +            -DUNIX			\
@@ -162,9 +155,8 @@ diff -Nur varkon_1.17C.orig/sources/GE/src/Makefile.linux varkon_1.17C/sources/G
  
  COMPILE = $(CC) -c $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/GP/src/Makefile.linux varkon_1.17C/sources/GP/src/Makefile.linux
---- varkon_1.17C.orig/sources/GP/src/Makefile.linux	Mon Aug 21 21:34:37 2000
-+++ varkon_1.17C/sources/GP/src/Makefile.linux	Tue May 22 21:35:01 2001
+--- varkon_1.17D.orig/sources/GP/src/Makefile.linux	Mon Aug 21 21:34:37 2000
++++ varkon_1.17D/sources/GP/src/Makefile.linux	Tue May 22 21:35:01 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -174,11 +166,10 @@ diff -Nur varkon_1.17C.orig/sources/GP/src/Makefile.linux varkon_1.17C/sources/G
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,12 +15,11 @@
+@@ -17,11 +15,11 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
              -DUNIX                      \
              -DV3_OPENGL                 \
@@ -204,9 +195,8 @@ diff -Nur varkon_1.17C.orig/sources/GP/src/Makefile.linux varkon_1.17C/sources/G
  
  include Makefile.GP
  
-diff -Nur varkon_1.17C.orig/sources/IG/src/Makefile.linux varkon_1.17C/sources/IG/src/Makefile.linux
---- varkon_1.17C.orig/sources/IG/src/Makefile.linux	Mon Aug 21 21:34:42 2000
-+++ varkon_1.17C/sources/IG/src/Makefile.linux	Tue May 22 21:35:31 2001
+--- varkon_1.17D.orig/sources/IG/src/Makefile.linux	Mon Aug 21 21:34:42 2000
++++ varkon_1.17D/sources/IG/src/Makefile.linux	Tue May 22 21:35:31 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -216,11 +206,10 @@ diff -Nur varkon_1.17C.orig/sources/IG/src/Makefile.linux varkon_1.17C/sources/I
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,11 +15,10 @@
+@@ -17,10 +15,10 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
              -DUNIX                      \
              -DV3_X11                    \
@@ -322,9 +311,8 @@ diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.PL varkon_1.17C/sources/PL/s
  	mv gerber $(VARKON_ROOT)/bin
  
  all : postscript epson ibmpro hp7475 hpcl5 hpgl2 gerber
-diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.linux varkon_1.17C/sources/PL/src/Makefile.linux
---- varkon_1.17C.orig/sources/PL/src/Makefile.linux	Mon Aug 21 21:34:44 2000
-+++ varkon_1.17C/sources/PL/src/Makefile.linux	Tue May 22 21:35:59 2001
+--- varkon_1.17D.orig/sources/PL/src/Makefile.linux	Mon Aug 21 21:34:44 2000
++++ varkon_1.17D/sources/PL/src/Makefile.linux	Tue May 22 21:35:59 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -334,11 +322,10 @@ diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.linux varkon_1.17C/sources/P
  # Options to CC
  
  CFLAGS =                             \
-@@ -19,10 +17,9 @@
+@@ -19,9 +17,9 @@
           -ffloat-store               \
           -fsigned-char               \
           -fwritable-strings          \
--         -m486                       \
 -         -O                          \
           -DUNIX                      \
 -         -DWRK_STAT
@@ -347,9 +334,8 @@ diff -Nur varkon_1.17C.orig/sources/PL/src/Makefile.linux varkon_1.17C/sources/P
  
  COMPILE = $(CC) $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/PM/src/Makefile.linux varkon_1.17C/sources/PM/src/Makefile.linux
---- varkon_1.17C.orig/sources/PM/src/Makefile.linux	Mon Aug 21 21:34:48 2000
-+++ varkon_1.17C/sources/PM/src/Makefile.linux	Tue May 22 21:38:49 2001
+--- varkon_1.17D.orig/sources/PM/src/Makefile.linux	Mon Aug 21 21:34:48 2000
++++ varkon_1.17D/sources/PM/src/Makefile.linux	Tue May 22 21:38:49 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -359,21 +345,21 @@ diff -Nur varkon_1.17C.orig/sources/PM/src/Makefile.linux varkon_1.17C/sources/P
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,11 +15,10 @@
+@@ -17,11 +15,11 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
              -DWRK_STAT                  \
              -DV3_X11                    \
--            -DUNIX
-+            -DUNIX			\
+             -DUNIX                      \
+-            -DVARKON
++            -DVARKON                    \
 +	    $(OPTFLAGS)
  
  debug :      CFLAGS =                   \
              -ansi                       \
-@@ -29,12 +26,11 @@
+@@ -29,13 +26,12 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
@@ -382,15 +368,15 @@ diff -Nur varkon_1.17C.orig/sources/PM/src/Makefile.linux varkon_1.17C/sources/P
              -DWRK_STAT                  \
              -DV3_X11                    \
              -DDEBUG                     \
--            -DUNIX
-+            -DUNIX			\
+             -DUNIX                      \
+-            -DVARKON
++            -DVARKON                    \
 +	    $(OPTFLAGS)
  
  COMPILE = $(CC) -c $(CFLAGS)
  
-diff -Nur varkon_1.17C.orig/sources/WP/src/Makefile.linux varkon_1.17C/sources/WP/src/Makefile.linux
---- varkon_1.17C.orig/sources/WP/src/Makefile.linux	Mon Aug 21 21:34:55 2000
-+++ varkon_1.17C/sources/WP/src/Makefile.linux	Tue May 22 21:39:51 2001
+--- varkon_1.17D.orig/sources/WP/src/Makefile.linux	Mon Aug 21 21:34:55 2000
++++ varkon_1.17D/sources/WP/src/Makefile.linux	Tue May 22 21:39:51 2001
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -400,11 +386,10 @@ diff -Nur varkon_1.17C.orig/sources/WP/src/Makefile.linux varkon_1.17C/sources/W
  distr :     CFLAGS =                    \
              -ansi                       \
              -pedantic                   \
-@@ -17,12 +15,11 @@
+@@ -17,11 +15,11 @@
              -ffloat-store               \
              -fsigned-char               \
              -fwritable-strings          \
--            -m486                       \
 -            -O                          \
              -DUNIX                      \
              -DV3_X11                    \
