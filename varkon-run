@@ -14,7 +14,7 @@
 # Root directory for VARKON installation. Change this
 # line to point to the right location.
 
-VARKON_ROOT="/usr/X11R6/lib/varkon"
+VARKON_ROOT="/usr/lib/varkon"
 export VARKON_ROOT
 
 VARKON_LANG="${LANG}"
