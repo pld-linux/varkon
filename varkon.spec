@@ -9,7 +9,7 @@ Group(pl):	Aplikacje/Inzynierskie/CAD
 Source0:	http://www.microform.se/pub/linux/%{name}_sources_%{version}.tar.gz
 Source1:	http://www.microform.se/v_man.zip
 Source2:	http://www.microform.se/m_man.zip
-#BuildRequires:	
+BuildRequires:	/usr/bin/unzip
 #Requires:	
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 URL:		http://www.microform.se/index.htm
@@ -29,7 +29,7 @@ specjalistycznych celow.
 Pakiet zawiera dokumentacje!
 
 %prep
-%setup -q
+%setup -q -n %{name}_%{version}
 
 #%patch
 
