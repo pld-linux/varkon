@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Applications/Engineering
 Source0:	http://www.microform.se/pub/linux/%{name}_sources_%{version}.tar.gz
+# Source0-md5:	6bc1711555da63964798a1ccedd99568
 Source1:	http://www.microform.se/v_man.zip
 Source2:	http://www.microform.se/m_man.zip
 Source3:	%{name}-run
