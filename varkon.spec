@@ -2,7 +2,7 @@ Summary:	VARKON - a free CAD system
 Summary(pl):	VARKON - ogolnodostêpny program typu CAD
 Name:		varkon
 Version:	1.17C
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Engineering
 Source0:	http://www.microform.se/pub/linux/%{name}_sources_%{version}.tar.gz
