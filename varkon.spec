@@ -5,8 +5,6 @@ Version:	1.17C
 Release:	1
 License:	GPL
 Group:		Applications/Engineering
-Group(de):	Applikationen/Ingenieurwesen
-Group(pl):	Aplikacje/In¿ynierskie
 Source0:	http://www.microform.se/pub/linux/%{name}_sources_%{version}.tar.gz
 Source1:	http://www.microform.se/v_man.zip
 Source2:	http://www.microform.se/m_man.zip
