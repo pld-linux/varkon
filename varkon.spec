@@ -5,19 +5,20 @@ Version:	1.17C
 Release:	2
 License:	GPL
 Group:		Applications/Engineering
-Source0:	http://www.microform.se/pub/linux/%{name}_sources_%{version}.tar.gz
+#Source0Download: http://www.tech.oru.se/cad/varkon/sources.htm
+Source0:	http://www.tech.oru.se/cad/varkon/pub/linux/%{name}_sources_%{version}.tar.gz
 # Source0-md5:	6bc1711555da63964798a1ccedd99568
-Source1:	http://www.microform.se/v_man.zip
-Source2:	http://www.microform.se/m_man.zip
+# TODO: refetch on upgrade, they are for 1.17D now
+Source1:	http://www.tech.oru.se/cad/varkon/v_man.zip
+Source2:	http://www.tech.oru.se/cad/varkon/m_man.zip
 Source3:	%{name}-run
 Patch0:		%{name}-make.patch
-URL:		http://www.microform.se/index.htm
-BuildRequires:	unzip
-BuildRequires:	XFree86-devel
+URL:		http://www.tech.oru.se/cad/varkon/
 BuildRequires:	OpenGL-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	unzip
 Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 
