@@ -1,16 +1,17 @@
 Summary:	VARKON - a free CAD system
 Summary(pl):	VARKON - ogolnodostêpny program typu CAD
 Name:		varkon
-Version:	1.17C
-Release:	2
+Version:	1.17D
+Release:	1
 License:	GPL
 Group:		Applications/Engineering
 #Source0Download: http://www.tech.oru.se/cad/varkon/sources.htm
 Source0:	http://www.tech.oru.se/cad/varkon/pub/linux/%{name}_sources_%{version}.tar.gz
-# Source0-md5:	6bc1711555da63964798a1ccedd99568
-# TODO: refetch on upgrade, they are for 1.17D now
+# Source0-md5:	4a7e4573cc525b9e39428df6f97c036f
 Source1:	http://www.tech.oru.se/cad/varkon/v_man.zip
+# Source1-md5:	9bb474690c3c778fb361f2e487737ae3
 Source2:	http://www.tech.oru.se/cad/varkon/m_man.zip
+# Source2-md5:	95471415f387326ea105ea068a6bb175
 Source3:	%{name}-run
 Patch0:		%{name}-make.patch
 URL:		http://www.tech.oru.se/cad/varkon/
@@ -21,6 +22,8 @@ Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
+# /usr/lib/varkon used in varkon-run
+%define		_libdir		%{_prefix}/lib
 
 %description
 VARKON - a free CAD system and high level development tool for
@@ -37,13 +40,12 @@ Pakiet zawiera dokumentacjê.
 
 %prep
 %setup -q -n %{name}_%{version}
-%patch -p1
+%patch0 -p1
 
 mkdir man
-(cd man
+cd man
 unzip -q %{SOURCE1}
 unzip -n -q %{SOURCE2}
-)
 
 %build
 CC="%{__cc}"
