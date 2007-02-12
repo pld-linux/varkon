@@ -1,5 +1,5 @@
 Summary:	VARKON - a free CAD system
-Summary(pl):	VARKON - ogolnodostêpny program typu CAD
+Summary(pl.UTF-8):   VARKON - ogolnodostÄ™pny program typu CAD
 Name:		varkon
 Version:	1.17D
 Release:	1
@@ -31,12 +31,12 @@ Engineering.
 
 Documentation included.
 
-%description -l pl
-VARKON jest _SYSTEMEM_ typu CAD, pozwalaj±cym dziêki specjalnemu
-jêzykowi MBS na prowadzenie zaawansowanych prac i dostosowanie
-programu do specjalistycznych celów.
+%description -l pl.UTF-8
+VARKON jest _SYSTEMEM_ typu CAD, pozwalajÄ…cym dziÄ™ki specjalnemu
+jÄ™zykowi MBS na prowadzenie zaawansowanych prac i dostosowanie
+programu do specjalistycznych celÃ³w.
 
-Pakiet zawiera dokumentacjê.
+Pakiet zawiera dokumentacjÄ™.
 
 %prep
 %setup -q -n %{name}_%{version}
