@@ -1,3 +1,4 @@
+%define		srcname		Varkon
 Summary:	VARKON - a free CAD system
 Summary(pl.UTF-8):	VARKON - ogolnodostępny program typu CAD
 Name:		varkon
@@ -5,7 +6,7 @@ Version:	1.19D
 Release:	1
 License:	GPL
 Group:		Applications/Engineering
-Source0:	http://dl.sourceforge.net/varkon/%{_name}_sources_%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/varkon/%{srcname}_sources_%{version}.tar.gz
 # Source0-md5:	1bbdf0c1b29393aa3bbaaccda43b21bc
 Source1:	%{name}-run
 Patch0:		%{name}-make.patch
@@ -33,7 +34,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 # /usr/lib/varkon used in varkon-run
 %define		_libdir		%{_prefix}/lib
-%define		_name		Varkon
 
 %description
 VARKON - a free CAD system and high level development tool for
@@ -49,7 +49,7 @@ programu do specjalistycznych celów.
 Pakiet zawiera dokumentację.
 
 %prep
-%setup -q -n %{_name}_%{version}
+%setup -q -n %{srcname}_%{version}
 %patch0 -p1
 %patch1 -p1
 
@@ -57,7 +57,7 @@ Pakiet zawiera dokumentację.
 CC="%{__cc}"
 OPTFLAGS="%{rpmcflags} -I/usr/X11R6/include"
 LDFLAGS="%{rpmldflags}"
-VARKON_ROOT="`pwd`"
+VARKON_ROOT=$(pwd)
 export CC OPTFLAGS LDFLAGS VARKON_ROOT
 cd sources
 %{__make}
@@ -65,9 +65,8 @@ cd sources
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/varkon}
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/varkon
-cp -pr bin cnf erm lib man mdf $RPM_BUILD_ROOT%{_libdir}/varkon
+cp -a bin cnf erm lib man mdf $RPM_BUILD_ROOT%{_libdir}/varkon
 
 %clean
 rm -rf $RPM_BUILD_ROOT
