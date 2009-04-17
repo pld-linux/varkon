@@ -1,29 +1,39 @@
 Summary:	VARKON - a free CAD system
 Summary(pl.UTF-8):	VARKON - ogolnodostępny program typu CAD
 Name:		varkon
-Version:	1.17D
+Version:	1.19D
 Release:	1
 License:	GPL
 Group:		Applications/Engineering
-#Source0Download: http://www.tech.oru.se/cad/varkon/sources.htm
-Source0:	http://www.tech.oru.se/cad/varkon/pub/linux/%{name}_sources_%{version}.tar.gz
-# Source0-md5:	4a7e4573cc525b9e39428df6f97c036f
-Source1:	http://www.tech.oru.se/cad/varkon/v_man.zip
-# Source1-md5:	9bb474690c3c778fb361f2e487737ae3
-Source2:	http://www.tech.oru.se/cad/varkon/m_man.zip
-# Source2-md5:	95471415f387326ea105ea068a6bb175
-Source3:	%{name}-run
+Source0:	http://dfn.dl.sourceforge.net/sourceforge/%{name}/%{_name}_sources_%{version}.tar.gz
+# Source0-md5:	1bbdf0c1b29393aa3bbaaccda43b21bc
+Source1:	%{name}-run
 Patch0:		%{name}-make.patch
+Patch1:		%{name}-h_addr.patch
 URL:		http://www.tech.oru.se/cad/varkon/
 BuildRequires:	OpenGL-devel
-BuildRequires:	XFree86-devel
-BuildRequires:	unzip
+BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXpm-devel
+BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	zlib-devel
 Requires:	OpenGL
+Requires:	xorg-lib-libX11
+Requires:	xorg-lib-libXext
+Requires:	xorg-lib-libXpm
+Requires:	xorg-lib-libXxf86vm
+Requires:	libtiff
+Requires:	libjpeg
+Requires:	zlib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 # /usr/lib/varkon used in varkon-run
 %define		_libdir		%{_prefix}/lib
+%define		_name	Varkon
 
 %description
 VARKON - a free CAD system and high level development tool for
@@ -39,13 +49,9 @@ programu do specjalistycznych celów.
 Pakiet zawiera dokumentację.
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup -q -n %{_name}_%{version}
 %patch0 -p1
-
-mkdir man
-cd man
-unzip -q %{SOURCE1}
-unzip -n -q %{SOURCE2}
+%patch1 -p1
 
 %build
 CC="%{__cc}"
@@ -54,13 +60,13 @@ LDFLAGS="%{rpmldflags}"
 VARKON_ROOT="`pwd`"
 export CC OPTFLAGS LDFLAGS VARKON_ROOT
 cd sources
-./make_varkon
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/varkon}
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/varkon
+install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/varkon
 cp -pr bin cnf erm lib man mdf $RPM_BUILD_ROOT%{_libdir}/varkon
 
 %clean
@@ -74,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/varkon/bin/*
 %dir %{_libdir}/varkon/cnf
 %{_libdir}/varkon/cnf/fnt
+%{_libdir}/varkon/cnf/snd
 %{_libdir}/varkon/cnf/icons
 %dir %{_libdir}/varkon/cnf/ini
 %{_libdir}/varkon/cnf/ini/english
