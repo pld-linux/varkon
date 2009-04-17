@@ -1,9 +1,3 @@
-
-%define		_noautoreqdep	libGL.so.1 libGLU.so.1
-# /usr/lib/varkon used in varkon-run
-%define		_libdir		%{_prefix}/lib
-%define		_name		Varkon
-
 Summary:	VARKON - a free CAD system
 Summary(pl.UTF-8):	VARKON - ogolnodostępny program typu CAD
 Name:		varkon
@@ -11,30 +5,35 @@ Version:	1.19D
 Release:	1
 License:	GPL
 Group:		Applications/Engineering
-Source0:	http://dfn.dl.sourceforge.net/sourceforge/%{name}/%{_name}_sources_%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/varkon/%{_name}_sources_%{version}.tar.gz
 # Source0-md5:	1bbdf0c1b29393aa3bbaaccda43b21bc
 Source1:	%{name}-run
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-h_addr.patch
 URL:		http://www.tech.oru.se/cad/varkon/
-BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	OpenGL-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libtiff-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
-BuildRequires:	libtiff-devel
-BuildRequires:	libjpeg-devel
 BuildRequires:	zlib-devel
 Requires:	OpenGL
+Requires:	libjpeg
+Requires:	libtiff
 Requires:	xorg-lib-libX11
 Requires:	xorg-lib-libXext
 Requires:	xorg-lib-libXpm
 Requires:	xorg-lib-libXxf86vm
-Requires:	libtiff
-Requires:	libjpeg
 Requires:	zlib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreqdep	libGL.so.1 libGLU.so.1
+# /usr/lib/varkon used in varkon-run
+%define		_libdir		%{_prefix}/lib
+%define		_name		Varkon
 
 %description
 VARKON - a free CAD system and high level development tool for
