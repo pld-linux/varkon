@@ -1,3 +1,9 @@
+
+%define		_noautoreqdep	libGL.so.1 libGLU.so.1
+# /usr/lib/varkon used in varkon-run
+%define		_libdir		%{_prefix}/lib
+%define		_name		Varkon
+
 Summary:	VARKON - a free CAD system
 Summary(pl.UTF-8):	VARKON - ogolnodostępny program typu CAD
 Name:		varkon
@@ -29,11 +35,6 @@ Requires:	libtiff
 Requires:	libjpeg
 Requires:	zlib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_noautoreqdep	libGL.so.1 libGLU.so.1
-# /usr/lib/varkon used in varkon-run
-%define		_libdir		%{_prefix}/lib
-%define		_name	Varkon
 
 %description
 VARKON - a free CAD system and high level development tool for
