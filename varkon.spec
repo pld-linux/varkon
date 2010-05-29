@@ -50,7 +50,9 @@ Pakiet zawiera dokumentację.
 
 %prep
 %setup -q -n %{srcname}_%{version}
+find -name "Makefile.linux" | xargs %{__sed} -i -e 's,\r$,,'
 %patch0 -p1
+%{__sed} -i -e 's,\r$,,' ./sources/EX/src/extcp.c
 %patch1 -p1
 
 %build
