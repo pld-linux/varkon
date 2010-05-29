@@ -9,8 +9,8 @@ Group:		Applications/Engineering
 Source0:	http://dl.sourceforge.net/varkon/%{srcname}_sources_%{version}.tar.gz
 # Source0-md5:	1bbdf0c1b29393aa3bbaaccda43b21bc
 Source1:	%{name}-run
-Patch0:		%{name}-make-bin.patch
-Patch1:		%{name}-h_addr-bin.patch
+Patch0:		%{name}-make.patch
+Patch1:		%{name}-h_addr.patch
 URL:		http://www.tech.oru.se/cad/varkon/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	OpenGL-devel
