@@ -16,6 +16,7 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
+BuildRequires:	m4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXpm-devel
@@ -62,7 +63,7 @@ LDFLAGS="%{rpmldflags}"
 VARKON_ROOT=$(pwd)
 export CC OPTFLAGS LDFLAGS VARKON_ROOT
 cd sources
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
