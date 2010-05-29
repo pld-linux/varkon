@@ -1,6 +1,6 @@
 diff -urN Varkon_1.19D.orig/sources/AN/src/Makefile.linux Varkon_1.19D/sources/AN/src/Makefile.linux
---- Varkon_1.19D.orig/sources/AN/src/Makefile.linux	2009-04-17 10:41:01.813260442 +0200
-+++ Varkon_1.19D/sources/AN/src/Makefile.linux	2009-04-17 12:05:06.494929306 +0200
+--- Varkon_1.19D.orig/sources/AN/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/AN/src/Makefile.linux	2010-05-29 18:32:32.000000000 +0200
 @@ -8,18 +8,14 @@
  
  RM = rm -f
@@ -23,8 +23,8 @@ diff -urN Varkon_1.19D.orig/sources/AN/src/Makefile.linux Varkon_1.19D/sources/A
  COMPILE = $(CC) -c $(CFLAGS)
  
 diff -urN Varkon_1.19D.orig/sources/DB/src/Makefile.linux Varkon_1.19D/sources/DB/src/Makefile.linux
---- Varkon_1.19D.orig/sources/DB/src/Makefile.linux	2009-04-17 10:41:01.814267805 +0200
-+++ Varkon_1.19D/sources/DB/src/Makefile.linux	2009-04-17 12:17:23.885486197 +0200
+--- Varkon_1.19D.orig/sources/DB/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/DB/src/Makefile.linux	2010-05-29 18:33:48.000000000 +0200
 @@ -8,25 +8,23 @@
  
  RM = rm -f
@@ -56,8 +56,8 @@ diff -urN Varkon_1.19D.orig/sources/DB/src/Makefile.linux Varkon_1.19D/sources/D
  COMPILE = $(CC) -c $(CFLAGS)
  
 diff -urN Varkon_1.19D.orig/sources/EX/src/Makefile.linux Varkon_1.19D/sources/EX/src/Makefile.linux
---- Varkon_1.19D.orig/sources/EX/src/Makefile.linux	2009-04-17 10:41:01.820935137 +0200
-+++ Varkon_1.19D/sources/EX/src/Makefile.linux	2009-04-17 12:29:59.974128499 +0200
+--- Varkon_1.19D.orig/sources/EX/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/EX/src/Makefile.linux	2010-05-29 18:35:03.000000000 +0200
 @@ -8,27 +8,25 @@
  
  RM = rm -f
@@ -73,7 +73,7 @@ diff -urN Varkon_1.19D.orig/sources/EX/src/Makefile.linux Varkon_1.19D/sources/E
 -            -O                          \
              -DUNIX                      \
 -            -DVARKON
-+            -DVARKON                    \
++            -DVARKON			\
 +	    $(OPTFLAGS)
  
  debug :     CFLAGS =                    \
@@ -85,7 +85,7 @@ diff -urN Varkon_1.19D.orig/sources/EX/src/Makefile.linux Varkon_1.19D/sources/E
              -DDEBUG                     \
              -DUNIX                      \
 -            -DVARKON
-+            -DVARKON                    \
++            -DVARKON			\
 +	    $(OPTFLAGS)
  
  distr :     RAPCFLAGS =                 \
@@ -95,77 +95,11 @@ diff -urN Varkon_1.19D.orig/sources/EX/src/Makefile.linux Varkon_1.19D/sources/E
  include Makefile.EX
  
 -##########################################################
-\ Brak znaku nowej linii na koñcu pliku
+\ Brak znaku nowej linii na koÅ„cu pliku
 +##########################################################
-diff -urN Varkon_1.19D.orig/sources/GE/src/Makefile.linux Varkon_1.19D/sources/GE/src/Makefile.linux
---- Varkon_1.19D.orig/sources/GE/src/Makefile.linux	2009-04-17 10:41:01.950934896 +0200
-+++ Varkon_1.19D/sources/GE/src/Makefile.linux	2009-04-17 12:31:43.126049451 +0200
-@@ -8,24 +8,23 @@
- 
- RM = rm -f
- 
--CC = gcc
--
- distr :     CFLAGS =                    \
-             -ansi                       \
-             -pedantic                   \
-             -Wall                       \
-             -ffloat-store               \
-             -fsigned-char               \
--            -O                          \
--            -DUNIX
-+            -DUNIX                      \
-+	    $(OPTFLAGS)
-+
- 
- debug :     CFLAGS =                    \
-             -ansi                       \
-             -Wall                       \
-             -ffloat-store               \
-             -fsigned-char               \
--            -g3                         \
--            -DUNIX
-+            -DUNIX                      \
-+	    $(OPTFLAGS)
- 
- COMPILE = $(CC) -c $(CFLAGS)
- 
-diff -urN Varkon_1.19D.orig/sources/IG/src/Makefile.linux Varkon_1.19D/sources/IG/src/Makefile.linux
---- Varkon_1.19D.orig/sources/IG/src/Makefile.linux	2009-04-17 10:41:02.557601640 +0200
-+++ Varkon_1.19D/sources/IG/src/Makefile.linux	2009-04-17 12:35:33.696190967 +0200
-@@ -8,25 +8,23 @@
- 
- RM = rm -f
- 
--CC = gcc
--
- distr :     CFLAGS =                    \
-             -ansi                       \
-             -pedantic                   \
-             -Wall                       \
-             -ffloat-store               \
-             -fsigned-char               \
--            -O                          \
--            -DUNIX
-+            -DUNIX                      \
-+	    $(OPTFLAGS)
- 
- debug :     CFLAGS =                    \
-             -ansi                       \
-             -Wall                       \
-             -ffloat-store               \
-             -fsigned-char               \
--            -g3                         \
-             -DDEBUG                     \
--            -DUNIX
-+            -DUNIX                      \
-+	    $(OPTFLAGS)
- 
- COMPILE = $(CC) -c $(CFLAGS)
- 
 diff -urN Varkon_1.19D.orig/sources/Makefile.linux Varkon_1.19D/sources/Makefile.linux
---- Varkon_1.19D.orig/sources/Makefile.linux	2009-04-17 10:41:03.688237918 +0200
-+++ Varkon_1.19D/sources/Makefile.linux	2009-04-17 12:47:43.003709226 +0200
+--- Varkon_1.19D.orig/sources/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/Makefile.linux	2010-05-29 18:38:16.000000000 +0200
 @@ -26,7 +26,7 @@
  # OpenGL libraries. You may have to change this line
  # to reflect the location of your OpenGL libs.
@@ -185,8 +119,8 @@ diff -urN Varkon_1.19D.orig/sources/Makefile.linux Varkon_1.19D/sources/Makefile
  
  ##########################################################
 diff -urN Varkon_1.19D.orig/sources/PL/src/Makefile.linux Varkon_1.19D/sources/PL/src/Makefile.linux
---- Varkon_1.19D.orig/sources/PL/src/Makefile.linux	2009-04-17 10:41:03.688237918 +0200
-+++ Varkon_1.19D/sources/PL/src/Makefile.linux	2009-04-17 13:01:59.046751861 +0200
+--- Varkon_1.19D.orig/sources/PL/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/PL/src/Makefile.linux	2010-05-29 18:39:43.000000000 +0200
 @@ -8,8 +8,6 @@
  
  RM = rm -f
@@ -208,8 +142,8 @@ diff -urN Varkon_1.19D.orig/sources/PL/src/Makefile.linux Varkon_1.19D/sources/P
  COMPILE = $(CC) $(CFLAGS)
  
 diff -urN Varkon_1.19D.orig/sources/PL/src/Makefile.PL Varkon_1.19D/sources/PL/src/Makefile.PL
---- Varkon_1.19D.orig/sources/PL/src/Makefile.PL	2009-04-17 10:41:03.688237918 +0200
-+++ Varkon_1.19D/sources/PL/src/Makefile.PL	2009-04-17 12:56:38.336784592 +0200
+--- Varkon_1.19D.orig/sources/PL/src/Makefile.PL	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/PL/src/Makefile.PL	2010-05-29 18:41:33.000000000 +0200
 @@ -36,20 +36,16 @@
  PLLIB      = ../lib/PLlib.a
  
@@ -236,8 +170,8 @@ diff -urN Varkon_1.19D.orig/sources/PL/src/Makefile.PL Varkon_1.19D/sources/PL/s
  # PLlib.a depends on the objects. Rule is implicit, no need to specify
  $(PLLIB) : $(OBJECTS)
 diff -urN Varkon_1.19D.orig/sources/PM/src/Makefile.linux Varkon_1.19D/sources/PM/src/Makefile.linux
---- Varkon_1.19D.orig/sources/PM/src/Makefile.linux	2009-04-17 10:41:03.801668675 +0200
-+++ Varkon_1.19D/sources/PM/src/Makefile.linux	2009-04-17 13:03:12.740081507 +0200
+--- Varkon_1.19D.orig/sources/PM/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/PM/src/Makefile.linux	2010-05-29 18:43:15.000000000 +0200
 @@ -8,27 +8,25 @@
  
  RM = rm -f
@@ -265,40 +199,32 @@ diff -urN Varkon_1.19D.orig/sources/PM/src/Makefile.linux Varkon_1.19D/sources/P
              -DDEBUG                     \
              -DUNIX                      \
 -            -DVARKON
-+            -DVARKON                    \
++            -DVARKON			\
 +	    $(OPTFLAGS)
  
  COMPILE = $(CC) -c $(CFLAGS)
  
 diff -urN Varkon_1.19D.orig/sources/WP/src/Makefile.linux Varkon_1.19D/sources/WP/src/Makefile.linux
---- Varkon_1.19D.orig/sources/WP/src/Makefile.linux	2009-04-17 10:41:05.577603344 +0200
-+++ Varkon_1.19D/sources/WP/src/Makefile.linux	2009-04-17 13:04:31.387988121 +0200
-@@ -8,25 +8,23 @@
- 
- RM = rm -f
- 
--CC = gcc
--
- distr :     CFLAGS =                    \
-             -ansi                       \
-             -pedantic                   \
+--- Varkon_1.19D.orig/sources/WP/src/Makefile.linux	2010-05-29 18:26:40.000000000 +0200
++++ Varkon_1.19D/sources/WP/src/Makefile.linux	2010-05-29 18:43:58.000000000 +0200
+@@ -16,8 +16,9 @@
              -Wall                       \
              -ffloat-store               \
              -fsigned-char               \
 -            -O                          \
 -            -DUNIX
-+            -DUNIX                      \
++            -DUNIX			\
 +	    $(OPTFLAGS)
++
  
  debug :     CFLAGS =                    \
              -ansi                       \
-             -Wall                       \
-             -ffloat-store               \
+@@ -26,7 +27,8 @@
              -fsigned-char               \
--            -g3                         \
+             -g3                         \
              -DDEBUG                     \
 -            -DUNIX
-+            -DUNIX                      \
++            -DUNIX			\
 +	    $(OPTFLAGS)
  
  COMPILE = $(CC) -c $(CFLAGS)
